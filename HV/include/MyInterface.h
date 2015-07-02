@@ -10,12 +10,12 @@ class MyInterface {
   void connect();
   void disconnect();
   int32_t executeQuery(std::string stmt);
-  void executeSelect(std::string stmt);
+  int32_t executeSelect(std::string stmt);
   MYSQL_ROW getNextRow();
  private:
-  std::string theACcount_,theName_,thePwd_,theHost_,theDatabase_;
+  std::string theAccount_,theName_,thePwd_,theHost_,theDatabase_;
   MYSQL theMysql_;
-  MYSQL_RES theMysqlRes_;
+  MYSQL_RES* theMysqlRes_;
     };
 
 #endif

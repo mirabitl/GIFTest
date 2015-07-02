@@ -8,8 +8,11 @@ class HVCaenInterface: public HVInterface
 {
  public:
   HVCaenInterface(std::string host,std::string user,std::string pwd);
+  virtual ~HVCaenInterface();
   virtual void Connect();
   virtual void Disconnect();
+  virtual void SetOn(uint32_t channel);
+  virtual void SetOff(uint32_t channel);
   virtual void SetCurrent(uint32_t channel,float imax);
   virtual void SetVoltage(uint32_t channel,float v0);
   virtual float GetCurrentSet(uint32_t channel);

@@ -1,10 +1,12 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <iostream>
 #include "MyInterface.h"
 MyInterface::MyInterface(std::string account) : theAccount_(account)
 {
   MyInterface::decodeAccount(account,theName_,thePwd_,theHost_,theDatabase_);
+  theMysqlRes_=NULL;
 }
 void MyInterface::decodeAccount(std::string account,std::string &Name,std::string &Pwd,std::string &Host,std::string &Database)
 {
@@ -63,7 +65,7 @@ int32_t MyInterface::executeQuery(std::string stmt)
   return retval;
 }
 
-void MyInterface::executeSelect(std::string stmt)
+int32_t MyInterface::executeSelect(std::string stmt)
 {
   // Retrieve mainframe information (address, username, meteo, ...)
   int32_t retval=-1;
@@ -74,7 +76,7 @@ void MyInterface::executeSelect(std::string stmt)
         exit(1);
     }
 
-    theMysqlRes = mysql_use_result(&theMysql);
+    theMysqlRes_ = mysql_use_result(&theMysql_);
 
     return retval;
 }
